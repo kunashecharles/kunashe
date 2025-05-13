@@ -387,37 +387,15 @@
 
 <script src="./assets/js/script.js"></script>
 <script>
-  // Initialize EmailJS
-  (function () {
-    emailjs.init("GD_DHP9GM3YwsafsK"); // Replace with your actual public key
-  })();
-
   function sendEmail() {
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const message = document.getElementById("message").value;
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
 
-    const templateParams = {
-      name: name,
-      email: email,
-      phone: phone,
-      message: message
-    };
+    const subject = encodeURIComponent('New Contact Form Submission');
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nMessage:\n${message}`);
 
-    emailjs.send("contact_service", "template_contact", templateParams)
-      .then(function (response) {
-        console.log("SUCCESS!", response.status, response.text);
-        alert("Form Submitted Successfully");
-        // Reset fields
-        document.getElementById("name").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("phone").value = "";
-        document.getElementById("message").value = "";
-      }, function (error) {
-        console.log("FAILED...", error);
-        alert("Form submission failed! Please try again later.");
-      });
+    window.location.href = `mailto:kunashecharles507@gmail.com?subject=${subject}&body=${body}`;
   }
 </script>
 
